@@ -2,16 +2,24 @@ import React, {  } from 'react';
 
 import './card.css';
 
-const Card = ({ reposInfo }) => {
+const Card = ({ reposInfo, loading }) => {
     // const [languages, setLanguages] = useState('')
   // console.log(props.repName)
+
+    // if (loading) {
+    //     return <h2>Loading ...</h2>
+    // }
+//   const gitReposInfo = reposInfo || []
   console.log(reposInfo);
   let cardInfo = '';
-  !reposInfo
+
+//   if (!reposInfo.length) 
+
+  !reposInfo.length 
     ? (cardInfo = <h1>Type Something</h1>)
-    : (cardInfo = reposInfo.items.map((item) => {
-        console.log(item.avatar_url)
-        
+    : 
+    (cardInfo = reposInfo.map((item) => {
+        console.log("IN MAAAAAAAP")
         return (
           <div key={item.id} className="card">
             <h3>Repo name: {item.name}</h3>

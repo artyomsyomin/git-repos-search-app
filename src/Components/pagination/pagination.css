@@ -1,0 +1,21 @@
+.pagination-items {
+  list-style-type: none;
+}
+
+.pagination-item {
+  display: inline-block;
+  margin: 4px;
+}
+
+a {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-decoration: none;
+  
+}
+
+
