@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react';
 
-const RepositoryInfo = (props) => {
-  const [name, setName] = useState(''); // name
-  const [stars, setStars] = useState(''); // stargazers_count
-  const [lastCommit, setLastCommit] = useState(''); // updated_at
-  const [userAvatar, setUserAvatar] = useState(''); // avatar_url or login (with link to profile)
-  const [userLogin, setUserLogin] = useState('');
-  const [languages, setLanguages] = useState([]); // languages_url - to get all languages needs to move in repo - https://api.github.com/repos/tvdstaaij/telegram-history-dump/languages
-  const [description, setDescription] = useState(''); // description
-  const [contributors, setContributors] = useState([]); // contributors_url - https://api.github.com/repos/tvdstaaij/telegram-history-dump/contributors
+import { connect } from 'react-redux';
+import { setRepoInfo } from '../../redux/actions/repoAction';
 
+const RepositoryInfo = ({
+  match,
+  name,
+  stars,
+  lastCommit,
+  userAvatar,
+  userLogin,
+  languages,
+  description,
+  contributors,
+  setRepoInfo,
+}) => {
   const [loading, setLoading] = useState(true);
 
-  console.log(props.match.url);
+  console.log(match.url);
   useEffect(() => {
     setLoading(true);
     const fetchRepoData = async () => {
       // setLoading(true);
-      const resAll = await fetch(
-        'https://api.github.com/repos' + props.match.url
-      );
+      const resAll = await fetch('https://api.github.com/repos' + match.url);
       const resLanguages = await fetch(
-        'https://api.github.com/repos' + props.match.url + '/languages'
+        'https://api.github.com/repos' + match.url + '/languages'
       );
       const resContributors = await fetch(
-        'https://api.github.com/repos' + props.match.url + '/contributors'
+        'https://api.github.com/repos' + match.url + '/contributors'
       );
 
       const dataAll = await resAll.json();
@@ -32,10 +35,7 @@ const RepositoryInfo = (props) => {
       const dataContributors = await resContributors.json();
 
       setData(dataAll, dataLanguages, dataContributors);
-      console.log(111111111111111);
-      //   console.log(dataAll);
-      //   console.log(dataLanguages);
-      //   console.log(dataContributors);
+
       setLoading(false);
     };
     fetchRepoData();
@@ -52,25 +52,27 @@ const RepositoryInfo = (props) => {
     dataLanguages,
     dataContributors
   ) => {
-    setName(name);
-    setStars(stargazers_count);
-    setLastCommit(updated_at);
-
-    setUserAvatar(avatar_url);
-    setUserLogin(login);
-
-    setLanguages(Object.keys(dataLanguages));
-    setDescription(description);
+    const languagesList = Object.keys(dataLanguages);
     const contributorsList = [];
     dataContributors.slice(0, 10).map((user) => {
       contributorsList.push(user.login);
-      setContributors(contributorsList);
     });
+    console.log('PAAAAGE===============' + languagesList);
+    setRepoInfo(
+      name,
+      stargazers_count,
+      updated_at,
+      avatar_url,
+      login,
+      languagesList,
+      description,
+      contributorsList
+    );
+
     console.log(languages);
     console.log(contributorsList);
   };
 
-  //   console.log(props);
   console.log(contributors);
 
   let RepoFullInfo = '';
@@ -97,7 +99,6 @@ const RepositoryInfo = (props) => {
             })}
           </p>
           <p>Description: {description}</p>
-          {/* <p>Contributors: {contributors}</p> */}
           <p>
             Contributors:{' '}
             {contributors.map((person) => {
@@ -110,4 +111,16 @@ const RepositoryInfo = (props) => {
   return <>{RepoFullInfo}</>;
 };
 
-export default RepositoryInfo;
+export default connect(
+  (state) => ({
+    name: state.repoReducer.name,
+    stars: state.repoReducer.stars,
+    lastCommit: state.repoReducer.lastCommit,
+    userAvatar: state.repoReducer.userAvatar,
+    userLogin: state.repoReducer.userLogin,
+    languages: state.repoReducer.languages,
+    description: state.repoReducer.description,
+    contributors: state.repoReducer.contributors,
+  }),
+  { setRepoInfo }
+)(RepositoryInfo);
