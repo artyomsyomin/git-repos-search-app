@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { setRepoInfo } from '../../redux/actions/repoAction';
 
+import './repositoryInfo.css';
+
 const RepositoryInfo = ({
   match,
   name,
@@ -45,7 +47,7 @@ const RepositoryInfo = ({
       stargazers_count,
       updated_at,
       description,
-      owner: { avatar_url, login, html_url },
+      owner: { avatar_url, login },
     },
     dataLanguages,
     dataContributors
@@ -72,31 +74,47 @@ const RepositoryInfo = ({
   loading
     ? (RepoFullInfo = <h1>Loading...</h1>)
     : (RepoFullInfo = (
-        <div>
-          <h1>This is a repository info</h1>
-          <p>Name: {name}</p>
-          <p>Stars: {stars}</p>
-          <p>Last Commit: {lastCommit}</p>
-          <p>Avatar:</p>
-          {userAvatar ? (
-            <img src={userAvatar} alt="user-avatar" />
-          ) : (
-            <a href={`https://github.com/${userLogin}`}>{userLogin}</a>
-          )}
+        <div className="repo-container">
+          <h1>REPOSITORY INFO</h1>
+          <div className="repo-info">
+            {userAvatar ? (
+              <img className="info-image" src={userAvatar} alt="user-avatar" />
+            ) : (
+              <a href={`https://github.com/${userLogin}`}>{userLogin}</a>
+            )}
+            <h3 className="info-name">{name}</h3>
+            <p className="info-stars">
+              <i className="fas fa-star" /> {stars}
+            </p>
+            <p className="info-commit">
+              <span className="info-sign">Last update:</span> {lastCommit}
+            </p>
 
-          <p>
-            Languages:{' '}
-            {languages.map((language) => {
-              return <span key={language}>{language} </span>;
-            })}
-          </p>
-          <p>Description: {description}</p>
-          <p>
-            Contributors:{' '}
-            {contributors.map((person) => {
-              return <span key={person}>{person} </span>;
-            })}
-          </p>
+            <p className="language-container">
+              <span className="info-sign">Languages:</span>
+              {languages.map((language) => {
+                return (
+                  <span className="info-language" key={language}>
+                    {' '}
+                    {language} /{' '}
+                  </span>
+                );
+              })}
+            </p>
+            <p className="info-description">
+              <span className="info-sign">Description:</span> {description}
+            </p>
+            <p className="contributors-container">
+              <span className="info-sign">Contributors:</span>
+              {contributors.map((person) => {
+                return (
+                  <span className="info-contributors" key={person}>
+                     {' '}{person} /{' '}
+                  </span>
+                );
+              })}
+            </p>
+          </div>
         </div>
       ));
 

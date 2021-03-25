@@ -1,0 +1,28 @@
+.repo-container {
+  width: 80%;
+  margin: 60px auto;
+}
+
+.repo-info {
+    width: 60%;
+    border: 2px solid #eee;
+    box-shadow: 0 5px 10px rgb(124, 124, 124);
+    padding: 10px;
+    margin: 60px auto;
+    box-sizing: border-box;
+    padding: 40px;
+}
+
+.info-image {
+    border-radius: 100%;
+    width: 18rem;
+}
+
+.info-name {
+    text-decoration: underline;
+}
+
+.info-sign {
+   text-decoration: underline;
+   font-weight: bold;
+}

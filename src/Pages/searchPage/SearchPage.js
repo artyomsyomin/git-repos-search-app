@@ -5,6 +5,8 @@ import Card from '../../Components/card/Card';
 
 import { connect } from 'react-redux';
 
+import './searchPage.css';
+
 import {
   setReposList,
   setCurrentPage,
@@ -32,9 +34,7 @@ const SearchPage = ({
   loadDataFromLocalStorage,
   setTotalRepos,
 }) => {
- 
   const [reposPerPage] = useState(10);
-
 
   const fetchRepos = async (inputText) => {
     const res = await fetch(urlSearch + inputText + '&sort=stars');
@@ -46,7 +46,6 @@ const SearchPage = ({
     } else {
       setTotalRepos('');
       setCurrentPage(1);
-
     }
   };
 
@@ -69,7 +68,7 @@ const SearchPage = ({
   let currentRepo = [];
   if (reposInfo) {
     if (reposInfo.length && reposInfo.length > reposPerPage) {
-      saveDataToLocalStorage(currentPage, reposInfo, searchText,totalRepos);
+      saveDataToLocalStorage(currentPage, reposInfo, searchText, totalRepos);
       const indexOfLastRepo = currentPage * reposPerPage;
       const indexOfFirstRepo = indexOfLastRepo - reposPerPage;
 
@@ -83,16 +82,19 @@ const SearchPage = ({
   };
 
   return (
-    <div>
-      <h1>This is a Search Page</h1>
-      <input
-        type="text"
-        name="search"
-        placeholder="Repos name"
-        onChange={inputHandler}
-        value={searchText}
-      />
-      <p>You search: {searchText}</p>
+    <div className="search-page">
+      <div className="input-container">
+        <h2>JUST START TYPING...</h2>
+        <input
+          placeholder="Type repository name"
+          type="text"
+          id="search"
+          onChange={inputHandler}
+          value={searchText}
+        />
+      </div>
+
+      {/* <p>You search: {searchText}</p> */}
       <Card reposInfo={currentRepo} loading={loading} />
       <Pagination
         reposPerPage={reposPerPage}
