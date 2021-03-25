@@ -15,7 +15,6 @@ const Pagination = ({ reposPerPage, totalRepos, paginate }) => {
         {pageNumbers.map((number) => (
           <li className="pagination-item" key={number}>
             <a className="pagination" onClick={() => paginate(number)}>
-              {' '}
               {/*// href needed */}
               {number}
             </a>

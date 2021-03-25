@@ -1,14 +1,11 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
-
-import RepositoryInfo from '../../Pages/RepositoryInfo/RepositoryInfo';
+import { Link } from 'react-router-dom';
 
 import './card.css';
 
 const Card = ({ reposInfo, loading }) => {
   console.log(reposInfo);
   let cardInfo = '';
-
   !reposInfo.length
     ? (cardInfo = <h1>Type Something</h1>)
     : (cardInfo = reposInfo.map((item) => {
