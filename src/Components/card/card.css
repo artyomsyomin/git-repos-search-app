@@ -5,4 +5,11 @@
   padding: 10px;
   margin: 10px auto;
   box-sizing: border-box;
+  
+  position: relative;
 }
+
+/* .git-link {
+  z-index: 5;
+/* position: absolute; */
+/* } */ 

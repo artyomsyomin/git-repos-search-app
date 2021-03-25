@@ -1,26 +1,30 @@
-const INITIAL_STATE = {
-  currentPage: 1,
-  //   reposPerPage: 10,
-  loadingList: false,
-  //   totalRepos: '',
-  reposInfo: [],
-  searchText: '',
-};
+import { loadStorage } from '../localStorage';
+
+const loadedData = loadStorage();
+let INITIAL_STATE = {};
+if (!loadedData || !loadedData.length) {
+  INITIAL_STATE = {
+    currentPage: 1,
+    // loadingList: false,
+
+    reposInfo: [],
+    searchText: '',
+    totalRepos: '',
+  };
+} else {
+  INITIAL_STATE = { ...loadedData };
+}
 
 const listReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'SET_REPOS_LIST':
       return {
         ...state,
-        // totalRepos: action.totalLength,
-        // currentPage: action.currentPage,
         reposInfo: action.reposInfo,
       };
     case 'REMOVE_REPOS_LIST':
       return {
         ...state,
-        // totalRepos: '',
-        // currentPage: 1,
         reposInfo: [],
       };
     case 'SET_CURRENT_PAGE':
@@ -32,6 +36,16 @@ const listReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         searchText: action.searchText,
+      };
+    case 'LOAD_DATA_TO_LOCALSTORAGE':
+      return {
+        ...state,
+        ...action.loadedData,
+      };
+    case 'SET_TOTAL_REPOS':
+      return {
+        ...state,
+        totalRepos: action.totalRepos,
       };
     default:
       return state;

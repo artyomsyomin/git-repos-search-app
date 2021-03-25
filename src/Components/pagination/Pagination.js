@@ -8,7 +8,6 @@ const Pagination = ({ reposPerPage, totalRepos, paginate }) => {
   for (let i = 1; i <= Math.ceil(totalRepos / reposPerPage); i++) {
     pageNumbers.push(i);
   }
-
   return (
     <div>
       <ul className="pagination-items">

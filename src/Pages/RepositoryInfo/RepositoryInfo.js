@@ -17,11 +17,9 @@ const RepositoryInfo = ({
 }) => {
   const [loading, setLoading] = useState(true);
 
-  console.log(match.url);
   useEffect(() => {
     setLoading(true);
     const fetchRepoData = async () => {
-      // setLoading(true);
       const resAll = await fetch('https://api.github.com/repos' + match.url);
       const resLanguages = await fetch(
         'https://api.github.com/repos' + match.url + '/languages'
@@ -57,7 +55,6 @@ const RepositoryInfo = ({
     dataContributors.slice(0, 10).map((user) => {
       contributorsList.push(user.login);
     });
-    console.log('PAAAAGE===============' + languagesList);
     setRepoInfo(
       name,
       stargazers_count,
@@ -68,12 +65,7 @@ const RepositoryInfo = ({
       description,
       contributorsList
     );
-
-    console.log(languages);
-    console.log(contributorsList);
   };
-
-  console.log(contributors);
 
   let RepoFullInfo = '';
 

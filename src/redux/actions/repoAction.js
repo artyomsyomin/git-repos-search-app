@@ -8,7 +8,6 @@ export const setRepoInfo = (
   description,
   contributors
 ) => {
-  console.log('ACTION===============' + contributors);
   return {
     type: 'SET_REPO_INFO',
     name,
