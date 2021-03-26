@@ -18,6 +18,12 @@ import {
   setTotalRepos,
 } from '../../redux/actions/listAction';
 
+import {
+  addFavorites,
+  removeFavorites,
+  loadFavorites,
+} from '../../redux/actions/favorAction';
+
 const urlSearch = 'https://api.github.com/search/repositories?q=';
 
 const SearchPage = ({
@@ -33,6 +39,9 @@ const SearchPage = ({
   clearDataInLocalStorage,
   loadDataFromLocalStorage,
   setTotalRepos,
+  addFavorites,
+  removeFavorites,
+  loadFavorites,
 }) => {
   const [reposPerPage] = useState(10);
 
@@ -63,6 +72,7 @@ const SearchPage = ({
 
   useEffect(() => {
     loadDataFromLocalStorage();
+    loadFavorites();
   }, []);
 
   let currentRepo = [];
@@ -81,6 +91,8 @@ const SearchPage = ({
     saveDataToLocalStorage(currentPage, reposInfo, searchText, totalRepos);
   };
 
+
+
   return (
     <div className="search-page">
       <div className="input-container">
@@ -95,7 +107,12 @@ const SearchPage = ({
       </div>
 
       {/* <p>You search: {searchText}</p> */}
-      <Card reposInfo={currentRepo} loading={loading} />
+      <Card
+        reposInfo={currentRepo}
+        loading={loading}
+        addFavorites={addFavorites}
+        removeFavorites={removeFavorites}
+      />
       <Pagination
         reposPerPage={reposPerPage}
         totalRepos={totalRepos}
@@ -122,5 +139,8 @@ export default connect(
     clearDataInLocalStorage,
     loadDataFromLocalStorage,
     setTotalRepos,
+    addFavorites,
+    removeFavorites,
+    loadFavorites,
   }
 )(SearchPage);
