@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Pagination from '../../Components/pagination/Pagination';
 import Card from '../../Components/card/Card';
+import Input from '../../Components/input/Input';
 
 import { connect } from 'react-redux';
 
@@ -29,7 +30,6 @@ const urlSearch = 'https://api.github.com/search/repositories?q=';
 const SearchPage = ({
   reposInfo,
   totalRepos,
-  loading,
   currentPage,
   searchText,
   setReposList,
@@ -45,10 +45,13 @@ const SearchPage = ({
   favorites,
 }) => {
   const [reposPerPage] = useState(10);
+  const [loading, setLoading] = useState(false);
 
   const fetchRepos = async (inputText) => {
+    setLoading(true);
     const res = await fetch(urlSearch + inputText + '&sort=stars');
     const data = await res.json();
+    setLoading(false);
     if (data.items) {
       setTotalRepos(data.items.length);
       setCurrentPage(1);
@@ -94,30 +97,25 @@ const SearchPage = ({
 
   return (
     <div className="search-page">
-      <div className="input-container">
-        <h2>JUST START TYPING...</h2>
-        <input
-          placeholder="Type repository name"
-          type="text"
-          id="search"
-          onChange={inputHandler}
-          value={searchText}
-        />
-      </div>
-
-      {/* <p>You search: {searchText}</p> */}
-      <Card
-        favorites={favorites}
-        reposInfo={currentRepo}
-        loading={loading}
-        addFavorites={addFavorites}
-        removeFavorites={removeFavorites}
-      />
-      <Pagination
-        reposPerPage={reposPerPage}
-        totalRepos={totalRepos}
-        paginate={paginate}
-      />
+      <Input inputHandler={inputHandler} searchText={searchText} />
+      {loading ? (
+        <h2>Searching...</h2>
+      ) : (
+        <>
+          <Card
+            favorites={favorites}
+            reposInfo={currentRepo}
+            loading={loading}
+            addFavorites={addFavorites}
+            removeFavorites={removeFavorites}
+          />
+          <Pagination
+            reposPerPage={reposPerPage}
+            totalRepos={totalRepos}
+            paginate={paginate}
+          />
+        </>
+      )}
     </div>
   );
 };
@@ -127,7 +125,7 @@ export default connect(
     favorites: state.favorReducer,
     reposInfo: state.listReducer.reposInfo,
     currentPage: state.listReducer.currentPage,
-    // loading: state.listReducer.loadingList,
+    loading: state.listReducer.loadingList,
     searchText: state.listReducer.searchText,
     totalRepos: state.listReducer.totalRepos,
   }),

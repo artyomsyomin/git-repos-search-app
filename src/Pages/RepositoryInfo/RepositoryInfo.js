@@ -75,7 +75,7 @@ const RepositoryInfo = ({
     ? (RepoFullInfo = <h1>Loading...</h1>)
     : (RepoFullInfo = (
         <div className="repo-container">
-          <h1>REPOSITORY INFO</h1>
+          <h1 className="page-name">REPOSITORY INFO</h1>
           <div className="repo-info">
             {userAvatar ? (
               <img className="info-image" src={userAvatar} alt="user-avatar" />
@@ -84,7 +84,7 @@ const RepositoryInfo = ({
             )}
             <h3 className="info-name">{name}</h3>
             <p className="info-stars">
-              <i className="fas fa-star" /> {stars}
+              <i className="fas fa-star star-icon" /> {stars}
             </p>
             <p className="info-commit">
               <span className="info-sign">Last update:</span> {lastCommit}
@@ -109,7 +109,8 @@ const RepositoryInfo = ({
               {contributors.map((person) => {
                 return (
                   <span className="info-contributors" key={person}>
-                     {' '}{person} /{' '}
+                    {' '}
+                    {person} /{' '}
                   </span>
                 );
               })}

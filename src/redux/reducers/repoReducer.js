@@ -36,7 +36,6 @@ const repoReducer = (state = INITIAL_STATE, action) => {
         description: '',
         contributors: [],
       };
-    //   case 'START_FETCHING':
 
     default:
       return state;

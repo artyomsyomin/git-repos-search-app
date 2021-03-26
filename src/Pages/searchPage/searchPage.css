@@ -1,8 +1,23 @@
 .search-page {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }
 
 .input-container {
-    margin: 80px 4px;
+  margin: 80px 4px;
+}
+
+.page-name {
+  width: 90%;
+  margin: auto;
+}
+
+@media (max-width: 800px) {
+  .search-page {
+    width: 100%;
+  }
+  .input-container {
+    width: 80%;
+    margin: 40px auto;
+  }
 }

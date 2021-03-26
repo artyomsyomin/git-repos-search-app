@@ -20,19 +20,3 @@ export const setRepoInfo = (
     contributors,
   };
 };
-
-// export const startFetching = () => {
-//   return {
-//     type: 'START_FETCHING',
-//   };
-// };
-// export const successFetching = () => {
-//   return {
-//     type: 'SUCCESS_FETCHING',
-//   };
-// };
-// export const failFetching = () => {
-//   return {
-//     type: 'FAIL_FETCHING',
-//   };
-// };

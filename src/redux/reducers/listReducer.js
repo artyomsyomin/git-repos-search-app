@@ -5,7 +5,7 @@ let INITIAL_STATE = {};
 if (!loadedData || !loadedData.length) {
   INITIAL_STATE = {
     currentPage: 1,
-    // loadingList: false,
+    loadingList: false,
 
     reposInfo: [],
     searchText: '',

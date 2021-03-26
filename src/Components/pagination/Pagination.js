@@ -9,12 +9,11 @@ const Pagination = ({ reposPerPage, totalRepos, paginate }) => {
     pageNumbers.push(i);
   }
   return (
-    <div className='pagination-container'>
+    <div className="pagination-container">
       <ul className="pagination-items">
         {pageNumbers.map((number) => (
           <li className="pagination-item" key={number}>
             <a className="pagination" onClick={() => paginate(number)}>
-              {/*// href needed */}
               {number}
             </a>
           </li>

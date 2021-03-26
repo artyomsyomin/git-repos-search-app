@@ -10,7 +10,6 @@ const Card = ({
   removeFavorites,
   favorites,
 }) => {
-  // console.log("CARD=======" + favorites)
   let cardInfo = '';
   !reposInfo.length
     ? (cardInfo = '')
@@ -21,7 +20,7 @@ const Card = ({
               <Link className="repo-item" to={`/${item.full_name}`}>
                 <h3 className="repo-name">{item.name}</h3>
                 <p className="repo-stars">
-                  <i className="fas fa-star" /> {item.stargazers_count}
+                  <i className="fas fa-star star-icon" /> {item.stargazers_count}
                 </p>
                 <p className="repo-commit">Last update: {item.updated_at}</p>
                 <p className="repo-description">{item.description}</p>

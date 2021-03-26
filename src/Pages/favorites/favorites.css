@@ -4,3 +4,13 @@
     padding-bottom: 100px;
 }
 
+.page-name {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+@media (max-width: 800px) {
+    .favor-page {
+      width: 100%;
+    }
+  }

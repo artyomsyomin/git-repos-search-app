@@ -17,7 +17,6 @@ export const removeFavorites = (id) => {
   };
 };
 
-
 export const loadFavorites = () => {
   const loadedFavor = laodFavorFromStorage();
   return {

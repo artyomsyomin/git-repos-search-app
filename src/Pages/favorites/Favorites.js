@@ -24,9 +24,9 @@ const Favorites = ({
 
   return (
     <div className="favor-page">
-      <h1>Your Favorites</h1>
+      <h1 className="page-name">YOUR FAVORITES</h1>
       <Card
-      favorites={favorites}
+        favorites={favorites}
         reposInfo={favorites}
         removeFavorites={removeFavorites}
         addFavorites={addFavorites}
@@ -40,4 +40,3 @@ export default connect((state) => ({ favorites: state.favorReducer }), {
   removeFavorites,
   loadFavorites,
 })(Favorites);
-
