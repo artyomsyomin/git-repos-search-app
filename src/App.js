@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import SearchPage from './Pages/searchPage/SearchPage';
 
-import RepositoryInfo from './Pages/repositoryInfo/RepositoryInfo';
+import RepositoryInfo from './Pages/RepositoryInfo/RepositoryInfo';
 import Favorites from './Pages/favorites/Favorites';
 import Header from './Components/header/Header';
 
