@@ -19,7 +19,7 @@ export const saveStorage = (state) => {
 
 export const clearStorage = () => {
   try {
-    localStorage.clear();
+    localStorage.removeItem('state');
   } catch (err) {}
 };
 
