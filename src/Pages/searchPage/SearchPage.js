@@ -42,6 +42,7 @@ const SearchPage = ({
   addFavorites,
   removeFavorites,
   loadFavorites,
+  favorites,
 }) => {
   const [reposPerPage] = useState(10);
 
@@ -91,8 +92,6 @@ const SearchPage = ({
     saveDataToLocalStorage(currentPage, reposInfo, searchText, totalRepos);
   };
 
-
-
   return (
     <div className="search-page">
       <div className="input-container">
@@ -108,6 +107,7 @@ const SearchPage = ({
 
       {/* <p>You search: {searchText}</p> */}
       <Card
+        favorites={favorites}
         reposInfo={currentRepo}
         loading={loading}
         addFavorites={addFavorites}
@@ -124,6 +124,7 @@ const SearchPage = ({
 
 export default connect(
   (state) => ({
+    favorites: state.favorReducer,
     reposInfo: state.listReducer.reposInfo,
     currentPage: state.listReducer.currentPage,
     // loading: state.listReducer.loadingList,

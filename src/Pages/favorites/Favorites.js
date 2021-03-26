@@ -26,6 +26,7 @@ const Favorites = ({
     <div className="favor-page">
       <h1>Your Favorites</h1>
       <Card
+      favorites={favorites}
         reposInfo={favorites}
         removeFavorites={removeFavorites}
         addFavorites={addFavorites}

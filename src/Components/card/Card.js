@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom';
 
 import './card.css';
 
-const Card = ({ reposInfo, loading, addFavorites, removeFavorites }) => {
+const Card = ({
+  reposInfo,
+  loading,
+  addFavorites,
+  removeFavorites,
+  favorites,
+}) => {
   // console.log("CARD=======" + favorites)
   let cardInfo = '';
   !reposInfo.length
@@ -24,12 +30,15 @@ const Card = ({ reposInfo, loading, addFavorites, removeFavorites }) => {
                 Go to GitHub
               </a>
             </div>
-            <button onClick={() => addFavorites(item.id, reposInfo)}>
-              Add to Favorites
-            </button>
-            <button onClick={() => removeFavorites(item.id)}>
-              Remove from Favorites
-            </button>
+            {favorites.find((favEl) => favEl.id === item.id) ? (
+              <span title="Remove from favorites" className='remove-btn fav-btn' onClick={() => removeFavorites(item.id)}>
+                <i className="fas fa-times fa-2x"></i>
+              </span>
+            ) : (
+              <span title="Add to favorites" className='add-btn fav-btn' onClick={() => addFavorites(item.id, reposInfo)}>
+               <i className="fas fa-star fa-2x"></i>
+              </span>
+            )}
           </div>
         );
       }));

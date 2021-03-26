@@ -1,11 +1,18 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+}
+
 .card {
   width: 80%;
   border: 2px solid #eee;
   box-shadow: 0 2px 3px #ccc;
   padding: 10px;
-  margin: 20px auto;
+  margin: 20px 2px 20px 20px;
   box-sizing: border-box;
-
+  /* flex-grow: 3; */
   position: relative;
 }
 
@@ -38,4 +45,27 @@
   text-decoration: none;
   display: block;
   text-align: center;
+}
+
+.fav-btn {
+  cursor: pointer;
+  background-color: #ccc;
+  display: flex;
+  padding: 10px 30px;
+  border-radius: 20px;
+  margin: 20px 8px;
+  width: 100px;
+}
+
+.add-btn:hover {
+  background-color: rgb(202, 183, 6);
+}
+
+.remove-btn:hover {
+  background-color: rgb(177, 12, 12);
+}
+
+.fas {
+  color: white;
+  margin: auto;
 }
